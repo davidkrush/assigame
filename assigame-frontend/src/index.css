@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root { --scrollbar-w: 6px; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    @apply font-body bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100;
+    font-feature-settings: 'cv02','cv03','cv04','cv11';
+  }
+  h1,h2,h3,h4,h5,h6 { @apply font-display font-semibold; }
+  ::-webkit-scrollbar { width: var(--scrollbar-w); height: var(--scrollbar-w); }
+  ::-webkit-scrollbar-track { @apply bg-slate-100 dark:bg-slate-800; }
+  ::-webkit-scrollbar-thumb { @apply bg-slate-300 dark:bg-slate-600 rounded-full; }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 bg-primary-600 hover:bg-primary-700 active:bg-primary-800
+           text-white font-medium rounded-xl transition-all duration-200 shadow-sm hover:shadow-md
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-slate-800 border border-slate-200
+           dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700
+           font-medium rounded-xl transition-all duration-200 shadow-sm focus:outline-none focus:ring-2
+           focus:ring-primary-500 focus:ring-offset-2;
+  }
+  .btn-accent {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 bg-accent-500 hover:bg-accent-600 active:bg-accent-700
+           text-white font-medium rounded-xl transition-all duration-200 shadow-sm hover:shadow-md
+           focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2;
+  }
+  .btn-whatsapp {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-[#25D366] hover:bg-[#20bd5a] text-white
+           font-semibold rounded-xl transition-all duration-200 shadow-sm hover:shadow-lg;
+  }
+  .card {
+    @apply bg-white dark:bg-slate-800 rounded-xl2 shadow-card border border-slate-100 dark:border-slate-700;
+  }
+  .input {
+    @apply w-full px-4 py-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600
+           rounded-xl text-slate-700 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all;
+  }
+  .label { @apply block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5; }
+  .badge-green  { @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400; }
+  .badge-yellow { @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400; }
+  .badge-red    { @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400; }
+  .badge-blue   { @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400; }
+  .badge-gray   { @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300; }
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-400
+           hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20
+           transition-all duration-150;
+  }
+  .sidebar-link.active {
+    @apply bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400;
+  }
+  .stat-card {
+    @apply card p-6 flex items-start gap-4;
+  }
+}
+
+@layer utilities {
+  .line-clamp-2 { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .line-clamp-3 { display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+  .gradient-primary { background: linear-gradient(135deg, #1d4ed8, #3b82f6, #0ea5e9); }
+  .gradient-accent  { background: linear-gradient(135deg, #ea580c, #f97316, #fbbf24); }
+  .glass { backdrop-filter: blur(12px); background: rgba(255,255,255,0.85); }
+  .glass-dark { backdrop-filter: blur(12px); background: rgba(15,23,42,0.85); }
+}
