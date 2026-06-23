@@ -1,3 +1,4 @@
+
 export const MOCK_CATEGORIES = [
   { id: 1, name: 'Electronics', slug: 'electronics', icon: '📱', count: 1240, color: 'bg-blue-100 text-blue-700' },
   { id: 2, name: 'Fashion', slug: 'fashion', icon: '👗', count: 3580, color: 'bg-pink-100 text-pink-700' },

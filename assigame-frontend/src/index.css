@@ -73,3 +73,23 @@
   .glass { backdrop-filter: blur(12px); background: rgba(255,255,255,0.85); }
   .glass-dark { backdrop-filter: blur(12px); background: rgba(15,23,42,0.85); }
 }
+
+/* ── Hero animated gradient ───────────────────────────────────────── */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animated-gradient {
+  background-size: 300% 300% !important;
+  animation: gradientShift 12s ease infinite;
+}
+
+/* ── Typewriter cursor blink ──────────────────────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+.animate-blink {
+  animation: blink 0.8s step-end infinite;
+}

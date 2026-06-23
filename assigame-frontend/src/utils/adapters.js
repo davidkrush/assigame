@@ -4,8 +4,7 @@
 // vers le format attendu par les composants existants
 // (ProductCard, ProductDetailPage, etc.)
 // ============================================================
-
-const PLACEHOLDER_IMAGE = 'https://placehold.co/600x400?text=Pas+d%27image';
+import { Gamepad2, Shirt, Phone, Monitor, Tv2, BookOpen, Puzzle, Dumbbell, Heart, Car, ShoppingBag } from 'lucide-react';
 
 export const slugify = (str = '') =>
   str
