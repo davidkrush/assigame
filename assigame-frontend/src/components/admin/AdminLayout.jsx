@@ -7,6 +7,7 @@ import {
 } from 'react-icons/fi';
 import { useTheme } from '../../contexts/ThemeContext';
 import { useToast } from '../../contexts/ToastContext';
+import appLogo from '../../assets/A(1).png';
 
 const NAV = [
   { to: '/admin/dashboard', icon: FiGrid, label: 'Tableau de bord' },
@@ -39,11 +40,10 @@ export default function AdminLayout({ children }) {
   const SidebarContent = () => (
     <div className="flex flex-col h-full">
       <div className="p-5 border-b border-slate-800">
-        <div className="flex items-center gap-2 text-white font-display font-bold text-lg">
-          <FiShield className="w-6 h-6 text-primary-400" />
-          MarketHub
+        <div className="flex items-center gap-3 flex-shrink-0">
+          <img src={appLogo} alt="logo" className="h-[96px] w-auto" />
         </div>
-        <p className="text-xs text-slate-500 mt-1 ml-8">Panneau Admin</p>
+        <p className="text-xs text-slate-500 mt-1 ml-2">Panneau Admin</p>
       </div>
 
       <nav className="flex-1 p-3 space-y-0.5 mt-2">

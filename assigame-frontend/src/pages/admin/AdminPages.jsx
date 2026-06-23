@@ -661,9 +661,9 @@ export function AdminReports() {
 // ─── SETTINGS ──────────────────────────────────────────────────
 export function AdminSettings() {
   const [settings, setSettings] = useState({
-    siteName: 'MarketHub',
+    siteName: 'Application',
     tagline: "La marketplace n°1 d'Afrique de l'Ouest",
-    contactEmail: 'support@markethub.com',
+    contactEmail: 'support@example.com',
     supportPhone: '+228 90 00 00 00',
     currency: 'FCFA',
     timezone: 'Africa/Lome',

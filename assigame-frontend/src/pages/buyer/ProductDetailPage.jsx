@@ -42,7 +42,7 @@ export default function ProductDetailPage() {
   const handleWhatsApp = () => {
     if (!product?.seller?.phone) return;
     const msg = encodeURIComponent(
-      `Bonjour ! Je suis intéressé(e) par votre annonce : *${product.title}* au prix de *${formatPrice(product.price, product.currency)}* sur MarketHub. Est-ce encore disponible ?`
+      `Bonjour ! Je suis intéressé(e) par votre annonce : *${product.title}* au prix de *${formatPrice(product.price, product.currency)}*. Est-ce encore disponible ?`
     );
     const phone = product.seller.phone.replace(/\s+/g, '').replace(/^\+/, '');
     window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');

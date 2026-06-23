@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiShoppingBag, FiGrid, FiPackage, FiPlusCircle, FiUser, FiSettings, FiLogOut, FiMenu, FiX, FiSun, FiMoon } from 'react-icons/fi';
+import { FiGrid, FiPackage, FiPlusCircle, FiUser, FiSettings, FiLogOut, FiMenu, FiX, FiSun, FiMoon } from 'react-icons/fi';
 import { useAuth } from '../../contexts/AuthContext';
 import { useTheme } from '../../contexts/ThemeContext';
 import { useToast } from '../../contexts/ToastContext';
+import appLogo from '../../assets/A(1).png';
 
 const NAV = [
   { to: '/seller/dashboard', icon: FiGrid, label: 'Tableau de bord' },
@@ -31,11 +32,10 @@ export default function SellerLayout({ children }) {
   const SidebarContent = () => (
     <div className="flex flex-col h-full">
       <div className="p-5 border-b border-slate-100 dark:border-slate-800">
-        <Link to="/" className="flex items-center gap-2 text-primary-600 font-display font-bold text-lg">
-          <FiShoppingBag className="w-6 h-6" />
-          MarketHub
+        <Link to="/" className="flex items-center gap-3 flex-shrink-0">
+          <img src={appLogo} alt="logo" className="h-[120px] w-auto" />
         </Link>
-        <p className="text-xs text-slate-400 mt-1 ml-8">Espace vendeur</p>
+        <p className="text-xs text-slate-400 mt-1 ml-2">Espace vendeur</p>
       </div>
 
       {/* User Info */}

@@ -341,7 +341,7 @@ export default function HomePage() {
       <section className="bg-slate-900 dark:bg-black py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <h2 className="text-2xl font-display font-bold text-white">Pourquoi MarketHub ?</h2>
+            <h2 className="text-2xl font-display font-bold text-white">Pourquoi nous ?</h2>
             <p className="text-slate-400 mt-2">Conçu pour la confiance, la rapidité et la simplicité.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

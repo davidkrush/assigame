@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FiMail, FiLock, FiEye, FiEyeOff, FiShoppingBag, FiUser, FiPhone, FiAlertCircle } from 'react-icons/fi';
+import { FiMail, FiLock, FiEye, FiEyeOff, FiUser, FiPhone, FiAlertCircle } from 'react-icons/fi';
 import { useAuth } from '../../contexts/AuthContext';
 import { useToast } from '../../contexts/ToastContext';
+import appLogo from '../../assets/A(1).png';
 
 function AuthWrapper({ title, subtitle, children }) {
   return (
@@ -14,9 +15,8 @@ function AuthWrapper({ title, subtitle, children }) {
         className="w-full max-w-md"
       >
         <div className="text-center mb-8">
-          <Link to="/" className="inline-flex items-center gap-2 text-primary-600 font-display font-bold text-2xl mb-4">
-            <FiShoppingBag className="w-7 h-7" />
-            MarketHub
+          <Link to="/" className="inline-flex items-center gap-3 flex-shrink-0 mb-4">
+            <img src={appLogo} alt="logo" className="h-[120px] w-auto" />
           </Link>
           <h1 className="text-2xl font-bold text-slate-800 dark:text-white">{title}</h1>
           <p className="text-slate-500 dark:text-slate-400 mt-1">{subtitle}</p>
@@ -125,7 +125,7 @@ export function SellerRegisterPage() {
 
     setLoading(false);
     if (result.success) {
-      toast.success('Compte créé avec succès ! Bienvenue sur MarketHub.');
+      toast.success('Compte créé avec succès ! Bienvenue.');
       navigate('/seller/dashboard');
     } else {
       setError(result.error);
@@ -184,7 +184,7 @@ export function SellerRegisterPage() {
         </div>
         <label className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400 cursor-pointer">
           <input type="checkbox" required className="mt-0.5 w-4 h-4 rounded border-slate-300 text-primary-600" />
-          J'accepte les <a href="#" className="text-primary-600 hover:underline">conditions d'utilisation</a> et la <a href="#" className="text-primary-600 hover:underline">politique de confidentialité</a>
+          J'accepte les <Link to="/terms" className="text-primary-600 hover:underline">conditions d'utilisation</Link> et la <Link to="/privacy" className="text-primary-600 hover:underline">politique de confidentialité</Link>
         </label>
         <button type="submit" disabled={loading} className="btn-primary w-full justify-center py-3">
           {loading ? <span className="animate-spin w-4 h-4 border-2 border-white/30 border-t-white rounded-full" /> : 'Créer mon compte'}

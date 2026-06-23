@@ -21,6 +21,7 @@ import { SellerProfile, SellerSettings } from './pages/seller/SellerProfile';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import { AdminUsers, AdminSellers, AdminProducts, AdminCategories, AdminReports, AdminSettings } from './pages/admin/AdminPages';
+import { TermsPage, PrivacyPage } from './pages/buyer/LegalPages';
 
 function BuyerWrapper({ children }) {
   return <><Navbar />{children}<Footer /></>;
@@ -60,6 +61,8 @@ export default function App() {
               <Route path="/admin/categories" element={<AdminGuard><AdminLayout><AdminCategories /></AdminLayout></AdminGuard>} />
               <Route path="/admin/reports" element={<AdminGuard><AdminLayout><AdminReports /></AdminLayout></AdminGuard>} />
               <Route path="/admin/settings" element={<AdminGuard><AdminLayout><AdminSettings /></AdminLayout></AdminGuard>} />
+              <Route path="/terms" element={<TermsPage />} />
+              <Route path="/privacy" element={<PrivacyPage />} />
 
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>

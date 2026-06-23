@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiSun, FiMoon, FiMenu, FiX, FiShoppingBag, FiGrid } from 'react-icons/fi';
+import { FiSun, FiMoon, FiMenu, FiX, FiGrid } from 'react-icons/fi';
 import { useTheme } from '../../contexts/ThemeContext';
 import SearchBar from '../common/SearchBar';
+import appLogo from '../../assets/A(1).png';
 
 export default function Navbar() {
   const { dark, toggle } = useTheme();
@@ -31,9 +32,8 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-4 h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 font-display font-bold text-xl text-primary-600 flex-shrink-0">
-            <FiShoppingBag className="w-6 h-6" />
-            <span>MarketHub</span>
+          <Link to="/" className="flex items-center gap-3 flex-shrink-0">
+            <img src={appLogo} alt="logo" className="h-[144px] w-auto" />
           </Link>
 
           {/* Desktop Search */}

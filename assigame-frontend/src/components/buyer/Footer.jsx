@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { FiShoppingBag, FiFacebook, FiTwitter, FiInstagram, FiYoutube } from 'react-icons/fi';
+import { FiFacebook, FiTwitter, FiInstagram, FiYoutube } from 'react-icons/fi';
+import appLogo from '../../assets/A(1).png';
 
 export default function Footer() {
   return (
@@ -8,12 +9,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 text-white font-display font-bold text-xl mb-4">
-              <FiShoppingBag className="w-6 h-6 text-primary-400" />
-              MarketHub
+            <div className="flex items-center gap-3 text-white font-display font-bold text-xl mb-4">
+              <img src={appLogo} alt="logo" className="h-[120px] w-auto" />
             </div>
             <p className="text-sm leading-relaxed mb-4">
-              West Africa's fastest-growing marketplace. Buy and sell anything, anywhere.
+              Le marché à la croissance la plus rapide en Afrique de l'Ouest. Achetez et vendez tout, partout.
             </p>
             <div className="flex gap-3">
               {[FiFacebook, FiTwitter, FiInstagram, FiYoutube].map((Icon, i) => (
@@ -28,7 +28,7 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-4">Marketplace</h4>
             <ul className="space-y-2.5 text-sm">
-              {['Browse Products','Categories','Featured','Deals','New Arrivals'].map(item => (
+              {['Parcourir les produits','Catégories','En vedette','Offres','Nouveautés'].map(item => (
                 <li key={item}>
                   <Link to="/products" className="hover:text-white transition-colors">{item}</Link>
                 </li>
@@ -38,13 +38,13 @@ export default function Footer() {
 
           {/* Sellers */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Sellers</h4>
+            <h4 className="text-white font-semibold mb-4">Vendeurs</h4>
             <ul className="space-y-2.5 text-sm">
               {[
-                { label: 'Start Selling', to: '/seller/register' },
-                { label: 'Seller Login', to: '/seller/login' },
-                { label: 'Seller Guide', to: '#' },
-                { label: 'Pricing', to: '#' },
+                { label: 'Commencer à vendre', to: '/seller/register' },
+                { label: 'Connexion vendeur', to: '/seller/login' },
+                { label: 'Guide vendeur', to: '#' },
+                { label: 'Tarifs', to: '#' },
               ].map(({ label, to }) => (
                 <li key={label}>
                   <Link to={to} className="hover:text-white transition-colors">{label}</Link>
@@ -55,20 +55,27 @@ export default function Footer() {
 
           {/* Support */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Support</h4>
+            <h4 className="text-white font-semibold mb-4">Assistance</h4>
             <ul className="space-y-2.5 text-sm">
-              {['Help Center','Contact Us','Privacy Policy','Terms of Service','Cookie Policy'].map(item => (
-                <li key={item}>
-                  <a href="#" className="hover:text-white transition-colors">{item}</a>
-                </li>
-              ))}
+              <li>
+                <Link to="/terms" className="hover:text-white transition-colors">Conditions d'utilisation</Link>
+              </li>
+              <li>
+                <Link to="/privacy" className="hover:text-white transition-colors">Politique de confidentialité</Link>
+              </li>
+              <li>
+                <a href="#" className="hover:text-white transition-colors">Centre d'aide</a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-white transition-colors">Contactez-nous</a>
+              </li>
             </ul>
           </div>
         </div>
 
         <div className="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
-          <p>© {new Date().getFullYear()} MarketHub. All rights reserved.</p>
-          <p>Made with ❤️ in West Africa</p>
+          <p>© {new Date().getFullYear()}. Tous droits réservés.</p>
+          <p>Développé par GUIGI DAVID</p>
         </div>
       </div>
     </footer>
