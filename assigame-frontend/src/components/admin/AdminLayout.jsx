@@ -16,7 +16,7 @@ const NAV = [
   { to: '/admin/products', icon: FiPackage, label: 'Produits' },
   { to: '/admin/categories', icon: FiTag, label: 'Catégories' },
   { to: '/admin/reports', icon: FiBarChart2, label: 'Rapports' },
-  { to: '/admin/settings', icon: FiSettings, label: 'Paramètres' },
+  // { to: '/admin/settings', icon: FiSettings, label: 'Paramètres' }, // Désactivé temporairement
 ];
 
 export default function AdminLayout({ children }) {

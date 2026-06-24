@@ -20,7 +20,7 @@ import { SellerProfile, SellerSettings } from './pages/seller/SellerProfile';
 
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
-import { AdminUsers, AdminSellers, AdminProducts, AdminCategories, AdminReports, AdminSettings } from './pages/admin/AdminPages';
+import { AdminUsers, AdminSellers, AdminProducts, AdminCategories, AdminReports /*, AdminSettings*/ } from './pages/admin/AdminPages'; // AdminSettings désactivé temporairement
 import { TermsPage, PrivacyPage } from './pages/buyer/LegalPages';
 
 function BuyerWrapper({ children }) {
@@ -60,7 +60,7 @@ export default function App() {
               <Route path="/admin/products" element={<AdminGuard><AdminLayout><AdminProducts /></AdminLayout></AdminGuard>} />
               <Route path="/admin/categories" element={<AdminGuard><AdminLayout><AdminCategories /></AdminLayout></AdminGuard>} />
               <Route path="/admin/reports" element={<AdminGuard><AdminLayout><AdminReports /></AdminLayout></AdminGuard>} />
-              <Route path="/admin/settings" element={<AdminGuard><AdminLayout><AdminSettings /></AdminLayout></AdminGuard>} />
+              {/* <Route path="/admin/settings" element={<AdminGuard><AdminLayout><AdminSettings /></AdminLayout></AdminGuard>} /> */}{/* Désactivé temporairement */}
               <Route path="/terms" element={<TermsPage />} />
               <Route path="/privacy" element={<PrivacyPage />} />
 

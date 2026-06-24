@@ -91,6 +91,7 @@ export const formatPrice = (price, currency = 'FCFA') => {
 };
 
 export const getStatusBadge = (status) => {
+  const key = (status || '').toString().trim().toLowerCase();
   const map = {
     active: 'badge-green',
     pending: 'badge-yellow',
@@ -101,5 +102,5 @@ export const getStatusBadge = (status) => {
     vendu: 'badge-gray',
     suspendu: 'badge-red',
   };
-  return map[status] || 'badge-gray';
+  return map[key] || 'badge-gray';
 };

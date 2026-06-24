@@ -261,11 +261,11 @@ export default function HomePage() {
                              hover:border-primary-300 dark:hover:border-primary-600 hover:shadow-card-hover transition-all group text-center"
                 >
                   <motion.span
-                    className="text-2xl"
-                    whileHover={{ scale: 1.25, rotate: [0, -10, 10, 0] }}
+                    className={`w-11 h-11 rounded-xl ${cat.iconBg} flex items-center justify-center`}
+                    whileHover={{ scale: 1.12, rotate: [0, -6, 6, 0] }}
                     transition={{ duration: 0.35 }}
                   >
-                    {cat.icon}
+                    <cat.Icon className={`w-5 h-5 ${cat.iconColor}`} strokeWidth={2} />
                   </motion.span>
                   <span className="text-xs font-medium text-slate-700 dark:text-slate-300 leading-tight">{cat.name}</span>
                 </Link>

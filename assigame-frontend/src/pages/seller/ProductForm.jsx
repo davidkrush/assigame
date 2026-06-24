@@ -205,7 +205,7 @@ export default function ProductForm() {
             <Field label="Catégorie" required>
               <select value={form.idcategorie_produit} onChange={set('idcategorie_produit')} required className="input">
                 <option value="">Sélectionnez une catégorie</option>
-                {categories.map(c => <option key={c.id} value={c.id}>{c.icon} {c.name}</option>)}
+                {categories.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
               </select>
             </Field>
           </div>

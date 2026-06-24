@@ -57,11 +57,35 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-4">Assistance</h4>
             <ul className="space-y-2.5 text-sm">
-              {['Contactez-nous', '+228 98467588', 'davidkrus2@gmail.com', 'Conditions d\'utilisation', 'Politique de cookies'].map(item => (
-                <li key={item}>
-                  <a href="#" className="hover:text-white transition-colors">{item}</a>
-                </li>
-              ))}
+              <li>
+                <span className="text-slate-400">Contactez-nous</span>
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/22898467588"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  +228 98467588
+                </a>
+              </li>
+              <li>
+                <a
+                  href="mailto:davidkrus2@gmail.com"
+                  className="hover:text-white transition-colors"
+                >
+                  davidkrus2@gmail.com
+                </a>
+              </li>
+              <li>
+                <Link to="/terms" className="hover:text-white transition-colors">
+                  Conditions d'utilisation
+                </Link>
+              </li>
+              <li>
+                <a href="#" className="hover:text-white transition-colors">Politique de cookies</a>
+              </li>
             </ul>
           </div>
         </div>

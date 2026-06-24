@@ -4,7 +4,7 @@
 // vers le format attendu par les composants existants
 // (ProductCard, ProductDetailPage, etc.)
 // ============================================================
-import { Gamepad2, Shirt, Phone, Monitor, Tv2, BookOpen, Puzzle, Dumbbell, Heart, Car, ShoppingBag } from 'lucide-react';
+import { getCategoryIconConfig } from './categoryIcons';
 
 export const slugify = (str = '') =>
   str
@@ -16,19 +16,35 @@ export const slugify = (str = '') =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/(^-|-$)/g, '');
 
+/** Normalise le statut produit renvoyé par l'API (ex. "DISPONIBLE" → "disponible"). */
+export const normalizeProductStatus = (statut) => {
+  const value = (statut || 'disponible').toString().trim().toLowerCase();
+  const aliases = {
+    active: 'disponible',
+    sold: 'vendu',
+    suspended: 'suspendu',
+  };
+  return aliases[value] || value;
+};
+
 /**
  * Convertit une catégorie backend { idcategorie_produit, nom_categorieproduit, description }
  * vers { id, name, slug, icon, count }
  */
-export const adaptCategory = (cat) => ({
-  id: cat.idcategorie_produit,
-  name: cat.nom_categorieproduit,
-  slug: slugify(cat.nom_categorieproduit),
-  description: cat.description,
-  icon: '📦',
-  count: cat.count ?? 0,
-  color: 'bg-blue-100 text-blue-700',
-});
+export const adaptCategory = (cat) => {
+  const { Icon, color, bg } = getCategoryIconConfig(cat.nom_categorieproduit);
+  return {
+    id: cat.idcategorie_produit,
+    name: cat.nom_categorieproduit,
+    slug: slugify(cat.nom_categorieproduit),
+    description: cat.description,
+    Icon,
+    iconColor: color,
+    iconBg: bg,
+    count: cat.count ?? 0,
+    color: `${bg} ${color}`,
+  };
+};
 
 /**
  * Convertit un produit backend (ProduitResponse) vers le format
@@ -65,7 +81,7 @@ export const adaptProduct = (p) => {
     reviews: 0,
     isFeatured: false,
     isTrending: false,
-    status: p.statut,
+    status: normalizeProductStatus(p.statut),
     createdAt: p.date_ajout,
   };
 };

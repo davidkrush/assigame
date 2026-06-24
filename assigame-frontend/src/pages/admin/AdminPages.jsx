@@ -7,6 +7,7 @@ import {
 import { adminApi } from '../../api/auth';
 import { productsApi } from '../../api/products';
 import { adaptProduct, adaptCategory } from '../../utils/adapters';
+import { CategoryIcon } from '../../utils/categoryIcons';
 import { formatPrice, getStatusBadge } from '../../utils/mockData';
 import { ConfirmModal } from '../../components/common/Modal';
 import { useToast } from '../../contexts/ToastContext';
@@ -503,7 +504,10 @@ export function AdminCategories() {
                         onKeyDown={e => { if (e.key === 'Enter') saveEdit(c.idcategorie_produit); if (e.key === 'Escape') setEditId(null); }}
                       />
                     ) : (
-                      <span className="font-medium">📦 {c.nom_categorieproduit}</span>
+                      <span className="font-medium flex items-center gap-2">
+                        <CategoryIcon name={c.nom_categorieproduit} size={16} withBackground />
+                        {c.nom_categorieproduit}
+                      </span>
                     )}
                   </Td>
                   <Td className="text-slate-500 text-xs">{c.description || '—'}</Td>
@@ -620,7 +624,10 @@ export function AdminReports() {
                   {topCats.map(([name, count]) => (
                     <div key={name}>
                       <div className="flex justify-between text-sm mb-1">
-                        <span>📦 {name}</span>
+                        <span className="flex items-center gap-2">
+                          <CategoryIcon name={name} size={15} />
+                          {name}
+                        </span>
                         <span className="text-slate-500">{count}</span>
                       </div>
                       <div className="h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">

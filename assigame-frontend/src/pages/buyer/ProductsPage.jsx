@@ -90,7 +90,10 @@ export default function ProductsPage() {
               onClick={() => set('category', cat.slug)}
               className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center justify-between ${category === cat.slug ? 'bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-400 font-medium' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'}`}
             >
-              <span className="flex items-center gap-2">{cat.icon} {cat.name}</span>
+              <span className="flex items-center gap-2">
+                <cat.Icon className={`w-4 h-4 flex-shrink-0 ${cat.iconColor}`} strokeWidth={2} />
+                {cat.name}
+              </span>
             </button>
           ))}
         </div>
