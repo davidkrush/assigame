@@ -3,6 +3,7 @@ package com.esgis2026.assigame.entity;
 
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -45,9 +46,10 @@ public class Utilisateur {
 
    /*@Column(nullable = false)
    private LocalDateTime date_creation;
-*/
+ */
+   @JsonProperty("statut")
    @Column(nullable = false, length = 20)
-   private String statut;
+   private String actif;
 
    @ManyToOne(fetch = FetchType.LAZY)
    @JoinColumn(name = "id_typeutilisateur")
@@ -81,8 +83,8 @@ public class Utilisateur {
    @Override
    public String toString() {
       return "Utilisateur [id_utilisateur=" + id_utilisateur + ", Nom=" + Nom + ", Prenom=" + Prenom + ", Email="
-            + Email + ", Motdepasse=" + Motdepasse + ", Login=" + Login + ", telephone=" + telephone + ", statut="
-            + statut + ", typeutilisateur=" + typeutilisateur + "]";
+            + Email + ", Motdepasse=" + Motdepasse + ", Login=" + Login + ", telephone=" + telephone + ", actif="
+            + actif + ", typeutilisateur=" + typeutilisateur + "]";
    }
 
    

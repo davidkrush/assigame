@@ -1,9 +1,14 @@
 package com.esgis2026.assigame.service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Base64;
+import java.util.List;
+
+import jakarta.annotation.PostConstruct;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.esgis2026.assigame.dto.LoginRequest;
 import com.esgis2026.assigame.dto.LoginResponse;
@@ -23,6 +28,29 @@ public class AuthService {
                         TypeUtilisateurRepository typeUtilisateurRepository) {
         this.utilisateurRepository = utilisateurRepository;
         this.typeUtilisateurRepository = typeUtilisateurRepository;
+    }
+
+    @PostConstruct
+    @Transactional
+    private void repairExistingVendorUsers() {
+        TypeUtilisateur vendorType = resolveDefaultType();
+
+        List<Utilisateur> usersToUpdate = utilisateurRepository.findAllWithTypeUtilisateur().stream()
+            .filter(u -> u.getTypeutilisateur() != null)
+            .filter(u -> {
+                String typeName = u.getTypeutilisateur().getNom_typeutilisateur();
+                if (typeName == null) return false;
+                boolean isAdminType = typeName.equalsIgnoreCase("admin");
+                boolean looksLikeVendor = (u.getLogin() != null && u.getLogin().toLowerCase().contains("vend"))
+                        || (u.getEmail() != null && u.getEmail().toLowerCase().contains("vendeur"));
+                return isAdminType && looksLikeVendor;
+            })
+            .toList();
+
+        if (!usersToUpdate.isEmpty()) {
+            usersToUpdate.forEach(u -> u.setTypeutilisateur(vendorType));
+            utilisateurRepository.saveAll(usersToUpdate);
+        }
     }
 
     /**
@@ -70,7 +98,7 @@ public class AuthService {
         utilisateur.setEmail(email);
         utilisateur.setMotdepasse(request.getMotdepasse());
         utilisateur.setTelephone(request.getTelephone());
-        utilisateur.setStatut("actif");
+        utilisateur.setActif("actif");
         utilisateur.setLogin(generateUniqueLogin(email));
         utilisateur.setTypeutilisateur(resolveDefaultType());
 
@@ -107,16 +135,17 @@ public class AuthService {
     }
 
     /**
-     * Récupère le type "Vendeur" (recherche insensible à la casse),
-     * sinon le premier type disponible en base.
+     * Récupère le type "Vendeur" (recherche insensible à la casse).
+     * Si aucun type "Vendeur" n'existe encore, on le crée automatiquement.
      */
     private TypeUtilisateur resolveDefaultType() {
         return typeUtilisateurRepository.findFirstByNomContaining("vendeur")
-                .or(() -> typeUtilisateurRepository.findAll().stream().findFirst())
-                .orElseThrow(() -> new IllegalStateException(
-                        "Aucun type d'utilisateur n'existe en base. "
-                        + "Ajoutez au moins une ligne dans la table 'typeutilisateur' "
-                        + "(ex: 'Vendeur') avant de créer un compte."));
+                .orElseGet(() -> {
+                    TypeUtilisateur typeVendeur = new TypeUtilisateur();
+                    typeVendeur.setNom_typeutilisateur("Vendeur");
+                    typeVendeur.setDescription_typeutilisateur("Type vendeur créé automatiquement");
+                    return typeUtilisateurRepository.save(typeVendeur);
+                });
     }
 
     private LoginResponse toLoginResponse(Utilisateur u) {
@@ -131,7 +160,7 @@ public class AuthService {
                 u.getEmail(),
                 u.getLogin(),
                 u.getTelephone(),
-                u.getStatut(),
+                u.getActif(),
                 typeNom,
                 token
         );

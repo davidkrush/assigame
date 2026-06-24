@@ -58,6 +58,9 @@ public class UtilisateurService {
      if (details.getTelephone() != null) {
         utilisateur.setTelephone(details.getTelephone());
      }
+     if (details.getActif() != null && !details.getActif().isBlank()) {
+        utilisateur.setActif(details.getActif());
+     }
 
      return utilisateurRepository.save(utilisateur);
     }                 

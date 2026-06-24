@@ -10,7 +10,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 text-white font-display font-bold text-xl mb-4">
-              <img src={appLogo} alt="logo" className="h-[120px] w-auto" />
+              <img src={appLogo} alt="logo" className="h-10 w-auto" />
             </div>
             <p className="text-sm leading-relaxed mb-4">
               Le marché à la croissance la plus rapide en Afrique de l'Ouest. Achetez et vendez tout, partout.
@@ -57,18 +57,11 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-4">Assistance</h4>
             <ul className="space-y-2.5 text-sm">
-              <li>
-                <Link to="/terms" className="hover:text-white transition-colors">Conditions d'utilisation</Link>
-              </li>
-              <li>
-                <Link to="/privacy" className="hover:text-white transition-colors">Politique de confidentialité</Link>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition-colors">Centre d'aide</a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition-colors">Contactez-nous</a>
-              </li>
+              {['Contactez-nous', '+228 98467588', 'davidkrus2@gmail.com', 'Conditions d\'utilisation', 'Politique de cookies'].map(item => (
+                <li key={item}>
+                  <a href="#" className="hover:text-white transition-colors">{item}</a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
