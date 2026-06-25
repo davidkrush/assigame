@@ -72,17 +72,22 @@ export default function ProductForm() {
 
   const set = (k) => (e) => setForm(f => ({ ...f, [k]: e.target.value }));
 
-  const handleImage = (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    // NOTE : l'upload de fichiers n'est pas encore branché côté backend.
-    // On utilise pour l'instant une URL locale juste pour l'aperçu,
-    // et on stocke le nom du fichier dans "image". À remplacer plus tard
-    // par un vrai service d'upload renvoyant une URL.
-    const url = URL.createObjectURL(file);
-    setPreview(url);
-    setForm(f => ({ ...f, image: file.name }));
-  };
+  const handleImage = async (e) => {
+  const file = e.target.files?.[0];
+  if (!file) return;
+
+  // Aperçu local immédiat
+  setPreview(URL.createObjectURL(file));
+
+  try {
+    const { data } = await productsApi.uploadImage(file);
+    setForm(f => ({ ...f, image: data.url }));
+  } catch (err) {
+    setError("Échec de l'upload de l'image.");
+    setPreview('');
+    setForm(f => ({ ...f, image: '' }));
+  }
+};
 
   const submit = async (e) => {
     e.preventDefault();
