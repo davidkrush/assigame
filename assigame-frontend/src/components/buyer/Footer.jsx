@@ -92,7 +92,7 @@ export default function Footer() {
 
         <div className="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
           <p>© {new Date().getFullYear()}. Tous droits réservés.</p>
-          <p>Développé par GUIGI DAVID</p>
+          <p>Assigame ©</p>
         </div>
       </div>
     </footer>
